@@ -1,0 +1,11 @@
+{
+  "name": "svg-sprite-loader-bug-repro",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "svg-sprite-loader": "^3.2.5",
+    "webpack": "^3.5.6"
+  }
+}
