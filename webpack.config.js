@@ -2,11 +2,19 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SpritePlugin = require('svg-sprite-loader/plugin');
 
+// if you change it to false, project will be built 
 const USE_ONEOF_SETUP = true;
 
 const src = path.resolve(__dirname, './src');
 const svgSpriteRule = {
   test: /\.svg$/,
+  // this way also works
+  // loader: 'svg-sprite-loader',
+  // options: {
+  //   extract: true
+  // }
+  // 
+  // this fails
   use: [
     {
       loader: 'svg-sprite-loader',
