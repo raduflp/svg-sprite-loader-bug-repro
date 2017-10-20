@@ -1,19 +1,24 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SpritePlugin = require('svg-sprite-loader/plugin');
 
-const USE_ONEOF_SETUP = false;
+const USE_ONEOF_SETUP = true;
 
+const src = path.resolve(__dirname, './src');
 const svgSpriteRule = {
   test: /\.svg$/,
-  loader: 'svg-sprite-loader',
-  options: {
-    extract: true,
-    spriteFilename: 'custom-sprite-name-[hash:8].svg'
-  },
+  use: [
+    {
+      loader: 'svg-sprite-loader',
+      options: {
+        extract: true
+      }
+    }
+  ]
 };
 
 module.exports = {
-  entry: path.resolve(__dirname, './src/index.js'),
+  entry: path.join(src, 'index.js'),
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
@@ -24,6 +29,11 @@ module.exports = {
     ],
   },
   plugins: [
-    new SpritePlugin()
+    new HtmlWebpackPlugin({
+      template: path.join(src, 'index.html'),
+    }),
+    new SpritePlugin({
+      plainSprite: true
+    }),
   ]
 };
